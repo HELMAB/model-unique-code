@@ -1,0 +1,50 @@
+{
+    "name": "helmab/model-unique-code",
+    "description": "Generate unique code for Laravel Model",
+    "keywords": [
+        "helmab",
+        "model-unique-code"
+    ],
+    "homepage": "https://github.com/helmab/model-unique-code",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mab Hel",
+            "email": "mabhelitc@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1|^7.4|^8.0",
+        "illuminate/support": "^5.0 || ^6.0 || ^7.0 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Helmab\\ModelUniqueCode\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Helmab\\ModelUniqueCode\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Helmab\\ModelUniqueCode\\ModelUniqueCodeServiceProvider"
+            ],
+            "aliases": {
+                "ModelUniqueCode": "Helmab\\ModelUniqueCode\\ModelUniqueCodeFacade"
+            }
+        }
+    }
+}

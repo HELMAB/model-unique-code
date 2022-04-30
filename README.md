@@ -31,7 +31,11 @@ class Invoice extends Model
     
     protected $length_unique_code = 8; // default
     
-    protected $prefix_unique_code = "INV"; // default with null
+    protected $prefix_unique_code = "INV"; // random
+    
+    protected $type_unique_code = "number"; // number, string, mixed
+    
+    protected $has_prefix_unique_code = false; // default
 
     protected $fillable = [
         'code',

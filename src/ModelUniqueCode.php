@@ -2,7 +2,14 @@
 
 namespace Helmab\ModelUniqueCode;
 
+use Helmab\ModelUniqueCode\Traits\HasModelUniqueCode;
+
 class ModelUniqueCode
 {
-    // Build your next great package.
+    use HasModelUniqueCode;
+
+    public function __toString()
+    {
+        return $this->random();
+    }
 }

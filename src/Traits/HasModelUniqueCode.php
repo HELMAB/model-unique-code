@@ -31,11 +31,23 @@ trait HasModelUniqueCode
     {
         $length = $this->length_unique_code ?? 8;
 
-        $number = substr(str_shuffle(str_repeat($x = '0123456789', ceil($length / strlen($x)))), 1, $length);
-        $label = substr(str_shuffle(str_repeat($x = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, 3);
+        $pattern = '0123456789';
+        if ($this->type_unique_code === 'string') {
+            $pattern = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        } else if ($this->type_unique_code === 'mixed') {
+            $pattern = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        }
 
-        $prefix = $this->prefix_unique_code ?? $label;
+        $code = substr(str_shuffle(str_repeat($x = $pattern, ceil($length / strlen($x)))), 1, $length);
 
-        return $prefix . '-' . $number;
+        if ($this->has_prefix_unique_code) {
+            $label = substr(str_shuffle(str_repeat($x = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, 3);
+
+            $prefix = $this->prefix_unique_code ?? $label;
+
+            return $prefix . '-' . $code;
+        }
+
+        return $code;
     }
 }
